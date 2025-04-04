@@ -10,6 +10,7 @@ const Sidebar = () => {
     dragItem.current = child;
     dragContainer.current = containerId;
     e.target.style.opacity = "0.5";
+    console.log(containerId)
   };
 
   const handleDragEnd = (e) => {
@@ -23,14 +24,17 @@ const Sidebar = () => {
 
     if (!item || sourceContainerId === targetContainerId) return;
 
+    // we have spread the prev(data) 
     setItemList((prev) => {
       const newData = prev.map((container) => ({
         ...container,
         child: [...container.child],
       }));
 
+      // Here we are just checking is sourceContainer and targetContainer
       const sourceContainer = newData.find((c) => c.id === sourceContainerId);
       const targetContainer = newData.find((c) => c.id === targetContainerId);
+      console.log(sourceContainer, targetContainer)
 
       if (!sourceContainer || !targetContainer) return prev;
 
